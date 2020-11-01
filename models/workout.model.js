@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 /*
-Classified/posting schema.
+Workout schema.
 */
 const workoutSchema = new Schema(
     {
