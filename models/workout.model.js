@@ -12,7 +12,7 @@ const workoutSchema = new Schema(
     {
         shotList: { type: Array, required: true },
         description: { type: String, required: false },
-        startdate: { type: Date, required: true },
+        startdate: { type: Date, required: false },
         enddate: { type: Date, required: false },
     },
     { timestamps: true }

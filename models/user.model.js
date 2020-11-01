@@ -12,7 +12,10 @@ const userSchema = new Schema(
     {
         tenant: { type: String, required: true },
         connection: { type: String, required: true },
-        email: { type: String, required: true },
+        email: {
+            type: String, required: true, unique: true,
+            lowercase: true
+        },
         password: { type: String, required: true },
         debug: { type: Boolean, required: false },
         email_verified: { type: Boolean, required: true },

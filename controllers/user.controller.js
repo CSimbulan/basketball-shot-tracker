@@ -28,6 +28,7 @@ Put request for updating a user's workout list given a user ID.
 exports.updateUserById = (req, res) => {
     const userId = req.body.userId;
     const updatedList = req.body.updatedList;
+    var ObjectID = require('mongodb').ObjectID;
     User.updateOne({ "_id": ObjectID(userId) }, { $set: { "workout_list": updatedList } })
         .then(() => res.json("User's workout list updated!"))
         .catch((err) => res.status(400).json("Error: " + err));
