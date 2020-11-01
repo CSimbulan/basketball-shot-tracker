@@ -22,6 +22,9 @@ exports.getUserById = (req, res) => {
         .catch((err) => res.status(400).json("Error: " + err));
 }
 
+/*
+Put request for updating a user's workout list given a user ID.
+*/
 exports.updateUserById = (req, res) => {
     const userId = req.body.userId;
     const updatedList = req.body.updatedList;
