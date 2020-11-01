@@ -49,3 +49,14 @@ exports.createWorkout = (req, res) => {
         .then(() => res.json("workout added!"))
         .catch((err) => res.status(400).json("Error: " + err));
 }
+
+/*
+Put request for updating a workouts's shot list given a workout ID.
+*/
+exports.updateWorkoutById = (req, res) => {
+    const workoutId = req.body.workoutId;
+    const updatedList = req.body.updatedList;
+    Workout.updateOne({ "_id": ObjectID(workoutId) }, { $set: { "shotList": updatedList } })
+        .then(() => res.json("Workout's shot list updated!"))
+        .catch((err) => res.status(400).json("Error: " + err));
+}
