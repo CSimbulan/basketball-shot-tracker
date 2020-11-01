@@ -5,7 +5,7 @@ Api controller for users.
 let User = require("../models/user.model");
 
 /*
-Normal get request, return all workouts.
+Normal get request, return all users.
 */
 exports.getUsers = (req, res) => {
     User.find()
@@ -14,7 +14,7 @@ exports.getUsers = (req, res) => {
 }
 
 /*
-Get request for a specific workout given an ID.
+Get request for a specific user given an ID.
 */
 exports.getUserById = (req, res) => {
     User.findById(req.params.id)
