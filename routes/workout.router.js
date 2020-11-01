@@ -17,3 +17,5 @@ router.route("/:id").get(getWorkoutById);
 router.route("/:id").delete(deleteWorkoutById);
 router.route("/add").post(createWorkout);
 router.route("/update").put(updateWorkoutById);
+
+module.exports = router;

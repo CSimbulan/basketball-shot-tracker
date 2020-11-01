@@ -15,3 +15,5 @@ Assign controller to routes
 router.route("/").get(getUsers);
 router.route("/:id").get(getUserById);
 router.route("/update").put(updateUserById);
+
+module.exports = router;

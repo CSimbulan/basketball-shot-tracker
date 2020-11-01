@@ -30,14 +30,12 @@ connection.once("open", () => {
 app.use(bodyParser.json());
 
 // Load Routes
-const workoutRouter = require("./routes/workout.router.js");
-//const usersRouter = require("./routes/users");
-//const authRouter = require("./routes/auth.router");
+const workoutRouter = require("./routes/workout.router");
+const usersRouter = require("./routes/user.router");
 
 // Use Routes
 app.use("/api/workouts", workoutRouter);
-//app.use("/users", usersRouter);
-//app.use("/api", authRouter);
+app.use("/api/users", usersRouter);
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
