@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+} from "react-router-dom";
+import NavbarPage from "./components/navbarpage.component";
+import Main from "./components/main.component"
+import Maindiv from "./components/maindiv.component"
 import './App.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+require('dotenv').config();
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <NavbarPage />
+        <Route exact path="/" component={Main} />
+        <Route path="/about" component={Maindiv} />
+      </Router>
+
     </div>
   );
 }

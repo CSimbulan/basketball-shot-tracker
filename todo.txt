@@ -1,0 +1,13 @@
+1) Get height of div using https://stackoverflow.com/questions/42981673/get-components-height-every-time-it-renders
+1b) Getting window height might work too for the following steps
+
+2) Set the height of canvas to div/window height and width to 70% or 80% (mess around with ratio but important that its a multiple of 10 to get square grid)
+
+3) Set dimension to height of canvas / 10. Repeats-Y is 10, repeats-x is 7 if 70% or 8 if 80% for example.
+
+4) Can use number of than multiple of 10. For example if want to divide height into 12, then dimension is height of canvas / 12, repeat-y is 12,
+    canvas width must be a multiple of (canvas height / 12). So if canvas height is 100, dimension is 8.333, then pick repeat-x to be 7 or 8 for example so width is 58.333% or 66.666%.
+
+5) Since height is based on the div/window height, and the width is a % of the height, the aspect ratio will be maintained with a perfect square grid.
+
+6) Basketball court credits: <a href='https://www.freepik.com/vectors/sport'>Sport vector created by jemastock - www.freepik.com</a>
