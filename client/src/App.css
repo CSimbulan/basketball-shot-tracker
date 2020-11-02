@@ -24,6 +24,12 @@
   opacity: 0.5;
 }
 
+.court-mark-x {
+  color: royalblue;
+  font-size: xx-large;
+  font-weight: 500;
+}
+
 .court-row {
   position: relative;
   padding-left: 0;
