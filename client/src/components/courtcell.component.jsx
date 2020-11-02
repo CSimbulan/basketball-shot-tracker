@@ -18,7 +18,7 @@ class CourtCell extends Component {
         return (
             <div className="court-cell"
                 onClick={() => this.props.onClick(this.props.x, this.props.y)}
-                style={{ width: this.props.size + "px", height: this.props.size + "px", border: "1px dashed black", display: "flex" }}>
+                style={{ width: this.props.size + "px", height: this.props.size + "px", border: "1px dotted black", display: "flex" }}>
                 {this.props.shotList.some(e => (e.x === this.props.x && e.y === this.props.y)) ? <span className="court-mark-x">X</span> : ""}
             </div>
         );

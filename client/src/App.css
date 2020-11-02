@@ -11,6 +11,7 @@
 .court {
   background-image: url("assets/court.png");
   background-size: cover;
+  background-position: center;
   flex-wrap: wrap;
 }
 

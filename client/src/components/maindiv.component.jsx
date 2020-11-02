@@ -26,7 +26,7 @@ class Main extends Component {
 
     updateWindowDimensions = () => {
         let w = window.innerWidth >= 992 ? this.selectRef.current.clientWidth : this.selectRef.current.clientWidth
-        this.setState({ width: w, height: w * (2550 / 2850), DIMENSION: w * (1 / 19) });
+        this.setState({ width: w * 0.995, height: w * (2550 / 2850), DIMENSION: w * (1 / 19) });
     }
 
     getCols = (row) => {
