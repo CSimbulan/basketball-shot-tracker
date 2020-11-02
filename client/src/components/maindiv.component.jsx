@@ -6,15 +6,13 @@ class Main extends Component {
     constructor(props) {
         super(props);
 
-        this.canvasRef = React.createRef();
+        this.selectRef = React.createRef();
         this.state = {
-            PIXELSIZE: 2,
+
             DIMENSION: 25,
-            REPEATSX: 20,
-            REPEATSY: 15,
             selectedBox: null,
-            width: 5,
-            height: 5,
+            height: 0,
+            width: 0,
             pixel: []
         }
     }
@@ -33,9 +31,11 @@ class Main extends Component {
 
     updateWindowDimensions = () => {
 
-        const dim = 25
 
-        this.setState({ width: window.innerWidth, height: window.innerHeight, DIMENSION: dim });
+        let w = window.innerWidth >= 992 ? this.selectRef.current.clientWidth : this.selectRef.current.clientWidth
+
+
+        this.setState({ width: w, height: w * 0.9, DIMENSION: w * 0.05 });
     }
 
     mouseMove = ({ nativeEvent }) => {
@@ -48,7 +48,7 @@ class Main extends Component {
     getCols = (row) => {
         var cols = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
         return cols.map((col) => {
-            return <CourtCell key={col + "," + row} x={col} y={row} />
+            return <CourtCell key={col + "," + row} x={col} y={row} size={this.state.DIMENSION} />
         })
     }
 
@@ -64,9 +64,15 @@ class Main extends Component {
         return (
             <div className="container">
                 <h1>Hello Worlds</h1>
-                <div className="court" style={{ width: "1000px", height: "900px", display: "flex" }}>
-                    {this.getRows()}
-                </div>
+                <MDBRow style={{ padding: 10, justifyContent: "center" }}>
+                    <MDBCol sm="12" md="12" lg="9" xl="9" style={{ padding: 10 }}>
+                        <div ref={this.selectRef} style={{ width: "100%" }}></div>
+                        <div className="court" style={{ width: this.state.width + "px", height: this.state.height + "px", display: "flex" }}>
+                            {this.getRows()}
+                        </div>
+                    </MDBCol>
+
+                </MDBRow>
             </div>
         );
     }

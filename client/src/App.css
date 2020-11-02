@@ -2,10 +2,15 @@
   text-align: center;
 }
 
+.container {
+  text-align: center;
+  justify-items: center;
+  align-items: center;
+}
+
 .court {
   background-image: url("assets/court.png");
   background-size: cover;
-
   flex-wrap: wrap;
 }
 

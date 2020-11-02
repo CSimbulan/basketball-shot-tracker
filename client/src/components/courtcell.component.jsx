@@ -9,7 +9,7 @@ class CourtCell extends Component {
 
     render() {
         return (
-            <div className="court-cell" onClick={this.onCellClick} style={{ width: "50px", height: "50px", border: "1px dashed black", display: "flex" }}></div>
+            <div className="court-cell" onClick={this.onCellClick} style={{ width: this.props.size + "px", height: this.props.size + "px", border: "1px dashed black", display: "flex" }}></div>
         );
     }
 }
