@@ -18,19 +18,20 @@
 .court-cell {
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 
 @media (pointer: fine) {
   .court-cell:hover {
-    background-color: aliceblue;
-    opacity: 0.5;
+    background-color: rgb(240, 248, 255, 0.5);
   }
 }
 
-.court-mark-x {
-  color: royalblue;
+.court-mark {
   font-size: xx-large;
   font-weight: 500;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
 }
 
 .court-row {

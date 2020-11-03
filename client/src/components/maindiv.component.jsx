@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBBtnGroup } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBBtnGroup, MDBTooltip } from "mdbreact";
 import CourtCell from "./courtcell.component";
 
 class Main extends Component {
@@ -45,10 +45,20 @@ class Main extends Component {
     clickCell = (x, y) => {
         if (this.state.addingShot && !this.state.shotList.some(e => (e.x === x && e.y === y))) {
             var sL = [...this.state.shotList];
-            sL.push({ x: x, y: y, makes: 0, attemps: 0 });
+            const [marker, markercolor] = this.generateRandomMarker()
+            sL.push({ x: x, y: y, makes: 0, attemps: 0, marker: marker, markercolor: markercolor });
             this.setState({ shotList: sL });
             this.toggleAddingShot()
         }
+    }
+
+    generateRandomMarker = () => {
+
+        var symbols = ["A", <i class="fab fa-canadian-maple-leaf"></i>, "X", <i class="fas fa-apple-alt"></i>, <i class="fas fa-star"></i>, <i class="far fa-star"></i>, <i class="fas fa-circle"></i>, <i class="fas fa-square"></i>, <i class="fas fa-moon"></i>, <i class="fas fa-basketball-ball"></i>, <i class="fas fa-play"></i>];
+        var colors = ["red", "royalblue", "gold", "black", "#22ff00", "#32a852", "#f27500", "#640af5", "#0ad2f5", "white", "#f78cff"];
+        var randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        return [randomSymbol, randomColor];
     }
 
     toggleAddingShot = () => {
@@ -145,9 +155,9 @@ class Main extends Component {
                     <MDBContainer>
                         <MDBRow size="12" style={{ width: "100%" }}>
                             <MDBCol style={{ justifyContent: "center", alignItems: "center", margin: "auto" }}>
-                                <span className="court-mark-x">X</span>
+                                <span className="court-mark" style={{ color: shot.markercolor }}>{shot.marker}</span>
                             </MDBCol>
-                            <MDBCol size="9" lg="10">
+                            <MDBCol size="9" lg="9">
                                 <MDBRow style={{ padding: "5px", alignItems: "center" }}>
                                     x: {shot.x}, y: {shot.y}
                                     <MDBBtnGroup size="sm" >
@@ -155,7 +165,7 @@ class Main extends Component {
                                     </MDBBtnGroup>
                                 </MDBRow>
                                 <MDBRow style={{ padding: "5px" }}>
-                                    FGM: {shot.makes} FGA: {shot.attemps} FG%: <span style={{ color: this.getShotPercentClass(shot.makes / shot.attemps * 100) }}> {shot.attemps > 0 ? (shot.makes / shot.attemps * 100).toFixed(1) + "%" : "0.0%"}</span>
+                                    FGM: {shot.makes} FGA: {shot.attemps} FG%: <span style={{ fontWeight: 500, color: this.getShotPercentClass(shot.makes / shot.attemps * 100) }}> {shot.attemps > 0 ? (shot.makes / shot.attemps * 100).toFixed(1) + "%" : "0.0%"}</span>
                                 </MDBRow>
                                 <MDBRow>
                                     <MDBBtnGroup size="sm" >
@@ -171,7 +181,7 @@ class Main extends Component {
                                         <MDBBtn color="deep-orange" onClick={() => this.decrementAttemps(shot)}>-A</MDBBtn>
                                     </MDBBtnGroup>
                                     <MDBBtnGroup size="sm" >
-                                        <MDBBtn className="deep-purple accent-3" onClick={() => this.resetShot(shot)}>Reset</MDBBtn>
+                                        <MDBBtn className="deep-purple accent-3" onClick={() => this.resetShot(shot)}><i class="fas fa-redo"></i></MDBBtn>
                                     </MDBBtnGroup>
                                 </MDBRow>
                             </MDBCol>
