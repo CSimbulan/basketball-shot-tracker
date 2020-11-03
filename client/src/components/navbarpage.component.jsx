@@ -16,9 +16,9 @@ class NavbarPage extends Component {
 
     render() {
         return (
-            <MDBNavbar color="default-color" dark expand="md">
+            <MDBNavbar className="peach-gradient" light expand="md">
                 <MDBNavbarBrand>
-                    <strong className="white-text">Navbar</strong>
+                    <strong className="black-text">Navbar</strong>
                 </MDBNavbarBrand>
                 <MDBNavbarToggler onClick={this.toggleCollapse} />
                 <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>

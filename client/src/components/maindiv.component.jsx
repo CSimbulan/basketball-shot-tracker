@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect, useRef } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import CourtCell from "./courtcell.component";
 import { useSelector } from 'react-redux';
+import SideNavPage from './sidenavpage.component';
 
 class Main extends Component {
     constructor(props) {
@@ -63,20 +64,23 @@ class Main extends Component {
 
     render() {
         return (
-            <div className="container">
-                <h1>Hello Worlds</h1>
-                <MDBRow style={{ padding: 10, justifyContent: "center" }}>
-                    <MDBCol sm="12" md="12" lg="9" xl="9" style={{ padding: 10 }}>
-                        <div ref={this.selectRef} style={{ width: "100%" }}></div>
-                        <div className="court" style={{ width: this.state.width + "px", height: this.state.height + "px", display: "flex" }}>
-                            {this.getRows()}
-                        </div>
-                    </MDBCol>
-                </MDBRow>
-                <MDBRow style={{ padding: 10, justifyContent: "center" }}>
-                    <MDBBtn color="primary" onClick={this.toggleAddingShot}>Adding Shot: {String(this.state.addingShot)}</MDBBtn><MDBBtn color="red" onClick={this.clearGrid}>Clear</MDBBtn>
-                </MDBRow>
-            </div>
+            <>
+
+                <div className="container">
+                    <h1>Hello Worlds</h1>
+                    <MDBRow style={{ padding: 10, justifyContent: "center" }}>
+                        <MDBCol sm="12" md="12" lg="9" xl="9" style={{ padding: 10 }}>
+                            <div ref={this.selectRef} style={{ width: "100%" }}></div>
+                            <div className="court" style={{ width: this.state.width + "px", height: this.state.height + "px", display: "flex" }}>
+                                {this.getRows()}
+                            </div>
+                        </MDBCol>
+                    </MDBRow>
+                    <MDBRow style={{ padding: 10, justifyContent: "center" }}>
+                        <MDBBtn color="primary" onClick={this.toggleAddingShot}>Adding Shot: {String(this.state.addingShot)}</MDBBtn><MDBBtn color="red" onClick={this.clearGrid}>Clear</MDBBtn>
+                    </MDBRow>
+                </div>
+            </>
         );
     }
 }
