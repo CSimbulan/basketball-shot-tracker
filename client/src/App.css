@@ -20,9 +20,11 @@
   justify-content: center;
 }
 
-.court-cell:hover {
-  background-color: aliceblue;
-  opacity: 0.5;
+@media (pointer: fine) {
+  .court-cell:hover {
+    background-color: aliceblue;
+    opacity: 0.5;
+  }
 }
 
 .court-mark-x {
