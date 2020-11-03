@@ -2,7 +2,6 @@ import React, { Component, useState, useEffect, useRef } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import CourtCell from "./courtcell.component";
 import { useSelector } from 'react-redux';
-import SideNavPage from './sidenavpage.component';
 
 class Main extends Component {
     constructor(props) {
