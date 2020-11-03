@@ -1,6 +1,5 @@
-import React, { Component, useState, useEffect, useRef } from 'react';
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
-import useWindowDimensions from "./dimensions.component";
+import React, { Component } from 'react';
+
 
 class Main extends Component {
     constructor(props) {
@@ -33,7 +32,7 @@ class Main extends Component {
 
         context.strokeStyle = '#cccccc';
         for (let i = 0; i <= this.state.DIMENSION * this.state.REPEATSX; ++i) {
-            if (i % this.state.DIMENSION != 0) { continue; }
+            if (i % this.state.DIMENSION !== 0) { continue; }
             let x = i * this.state.PIXELSIZE;
             context.beginPath();
             context.moveTo(x, 0);
@@ -58,7 +57,7 @@ class Main extends Component {
 
         context.strokeStyle = '#cccccc';
         for (let i = 0; i <= this.state.DIMENSION * this.state.REPEATSX; ++i) {
-            if (i % this.state.DIMENSION != 0) { continue; }
+            if (i % this.state.DIMENSION !== 0) { continue; }
             let x = i * this.state.PIXELSIZE;
             context.beginPath();
             context.moveTo(x, 0);
@@ -91,8 +90,6 @@ class Main extends Component {
             return;
         }
 
-        var mouseX = offsetX * canvas.width / canvas.clientWidth | 0;
-        var mouseY = offsetY * canvas.height / canvas.clientHeight | 0;
         console.log(canvas.clientWidth, canvas.clientHeight);
     }
 

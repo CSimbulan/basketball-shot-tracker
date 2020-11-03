@@ -40,3 +40,32 @@
   display: flex;
   width: 100%;
 }
+
+.shot-button {
+  width: 20px;
+  height: 20px;
+}
+
+.shotlist-item {
+  width: 100%;
+  border: 1px solid gray;
+}
+
+.test {
+  border: 1px solid black;
+  width: 100%;
+}
+
+.test-header {
+  height: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border-bottom: 1px solid black;
+}
+
+.test-list {
+  height: 85%;
+  overflow-y: scroll;
+}

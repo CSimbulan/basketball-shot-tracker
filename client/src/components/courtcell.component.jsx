@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { useSelector } from 'react-redux';
 
 class CourtCell extends Component {
     state = {}
