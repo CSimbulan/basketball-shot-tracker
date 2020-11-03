@@ -70,3 +70,10 @@
   height: 85%;
   overflow-y: scroll;
 }
+
+@media (max-width: 576px) {
+  .court-mark {
+    font-size: large;
+    font-weight: 300;
+  }
+}

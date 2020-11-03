@@ -54,7 +54,10 @@ class Main extends Component {
 
     generateRandomMarker = () => {
 
-        var symbols = ["A", <i class="fab fa-canadian-maple-leaf"></i>, "X", <i class="fas fa-apple-alt"></i>, <i class="fas fa-star"></i>, <i class="far fa-star"></i>, <i class="fas fa-circle"></i>, <i class="fas fa-square"></i>, <i class="fas fa-moon"></i>, <i class="fas fa-basketball-ball"></i>, <i class="fas fa-play"></i>];
+        var symbols = [<i class="fab fa-canadian-maple-leaf"></i>,
+        <i class="fas fa-apple-alt"></i>, <i class="fas fa-star"></i>, <i class="far fa-star"></i>, <i class="fas fa-circle"></i>,
+        <i class="fas fa-square"></i>, <i class="fas fa-moon"></i>, <i class="fas fa-basketball-ball"></i>, <i class="fas fa-crown"></i>,
+        <i class="fas fa-times"></i>, <i class="far fa-gem"></i>];
         var colors = ["red", "royalblue", "gold", "black", "#22ff00", "#32a852", "#f27500", "#640af5", "#0ad2f5", "white", "#f78cff"];
         var randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
