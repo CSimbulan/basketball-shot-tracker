@@ -29,14 +29,14 @@ class Main extends Component {
     }
 
     getCols = (row) => {
-        var cols = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+        let cols = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
         return cols.map((col) => {
             return <CourtCell key={col + "," + row} x={col} y={row} size={this.state.DIMENSION} onClick={this.clickCell} shotList={this.state.shotList} />
         })
     }
 
     getRows = () => {
-        var rows = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+        let rows = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
         return rows.map((row) => {
             return <div className="court-row" key={row}>{this.getCols(row)}</div>
         })
@@ -44,7 +44,7 @@ class Main extends Component {
 
     clickCell = (x, y) => {
         if (this.state.addingShot && !this.state.shotList.some(e => (e.x === x && e.y === y))) {
-            var sL = [...this.state.shotList];
+            let sL = [...this.state.shotList];
             const [marker, markercolor] = this.generateRandomMarker()
             sL.push({ x: x, y: y, makes: 0, attemps: 0, marker: marker, markercolor: markercolor });
             this.setState({ shotList: sL });
@@ -54,12 +54,12 @@ class Main extends Component {
 
     generateRandomMarker = () => {
 
-        var symbols = [<i class="fab fa-canadian-maple-leaf"></i>,
+        let symbols = [<i class="fab fa-canadian-maple-leaf"></i>,
         <i class="fas fa-apple-alt"></i>, <i class="fas fa-star"></i>, <i class="far fa-star"></i>, <i class="fas fa-circle"></i>,
         <i class="fas fa-square"></i>, <i class="fas fa-moon"></i>, <i class="fas fa-basketball-ball"></i>, <i class="fas fa-crown"></i>,
         <i class="fas fa-times"></i>, <i class="far fa-gem"></i>];
-        var colors = ["red", "royalblue", "gold", "black", "#22ff00", "#32a852", "#f27500", "#640af5", "#0ad2f5", "white", "#f78cff"];
-        var randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+        let colors = ["red", "royalblue", "gold", "black", "#22ff00", "#32a852", "#f27500", "#640af5", "#0ad2f5", "white", "#f78cff"];
+        let randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
         return [randomSymbol, randomColor];
     }
