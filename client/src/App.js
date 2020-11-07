@@ -4,24 +4,28 @@ import {
   Route,
 } from "react-router-dom";
 import NavbarPage from "./components/navbarpage.component";
-import Main from "./components/main.component"
 import Maindiv from "./components/maindiv.component"
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
+import { Auth0Provider } from '@auth0/auth0-react'
 require('dotenv').config();
+
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <NavbarPage />
-        <Route exact path="/" component={Main} />
-        <Route path="/about" component={Maindiv} />
-      </Router>
-
-    </div>
+    <Auth0Provider domain={domain} clientId={clientId} redirectUri={window.location.origin}>
+      <div className="App">
+        <Router>
+          <NavbarPage />
+          <Route exact path="/" component={Maindiv} />
+          <Route path="/about" component={Maindiv} />
+        </Router>
+      </div>
+    </Auth0Provider>
   );
 }
 
