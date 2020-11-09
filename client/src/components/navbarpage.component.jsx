@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import {
     MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
     MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem
-} from "mdbreact";
+} from 'mdbreact';
 import LoginButton from './loginbutton.component'
 import RegisterButton from './registerbutton.component'
+import LogoutButton from './logoutbutton.component';
+import ProfileButton from './profilebutton.component'
 import { useAuth0 } from '@auth0/auth0-react'
-import LogoutButton from "./logoutbutton.component";
-import { useState } from "react";
+import { useState } from 'react';
 
 const NavbarPage = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +19,7 @@ const NavbarPage = () => {
     }
 
     const getNavButtons = () => {
-        return isLoading ? <></> : isAuthenticated ? <LogoutButton /> : <div><LoginButton /><RegisterButton /></div>
+        return isLoading ? <></> : isAuthenticated ? <div><ProfileButton /><LogoutButton /></div> : <div><LoginButton /><RegisterButton /></div>
     }
 
     return (
