@@ -10,6 +10,4 @@ Once the user is finished with a workout they can save it to the database and vi
 
 The profile page will also contain analytics, which will show trends in the user's shooting percentages over time.
 
-##
-
-Live page coming soon.
+## Live page coming soon.
