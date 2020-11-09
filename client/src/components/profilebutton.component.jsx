@@ -1,3 +1,7 @@
+/*
+Profile button component for the navigation bar.
+*/
+
 import React from 'react';
 import { MDBBtn, MDBIcon } from 'mdbreact'
 

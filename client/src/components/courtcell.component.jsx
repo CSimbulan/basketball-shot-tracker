@@ -1,20 +1,16 @@
+/*
+This is the component for an inidividual cell in the court grid.
+*/
+
 import React, { Component } from 'react';
 import { MDBTooltip } from 'mdbreact';
 
 class CourtCell extends Component {
-    state = {}
 
-    onCellClick = () => {
-
-        console.log(this.props.y, this.props.x)
-    }
-
-    check = () => {
-        console.log(this.props.shotList.includes([this.props.x, this.props.y]) ? "X" : null)
-    }
-
+    /*
+    Change the text color based on percentage of makes.
+    */
     getShotPercentClass = (percentage) => {
-
         if (percentage >= 100) {
             return 'royalblue';
         }
@@ -34,7 +30,6 @@ class CourtCell extends Component {
             return 'white';
         }
     }
-
 
     render() {
         const thisShot = this.props.shotList.find(e => (e.x === this.props.x && e.y === this.props.y))
