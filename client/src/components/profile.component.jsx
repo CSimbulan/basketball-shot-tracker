@@ -1,3 +1,8 @@
+/*
+Profile component. This component will the all the user's workouts,
+with the ability to edit or delete them. 
+*/
+
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Redirect } from "react-router-dom";

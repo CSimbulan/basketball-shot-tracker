@@ -1,11 +1,16 @@
+/*
+Component for shot listing in the shot list user interface.
+*/
+
 import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBBtnGroup } from "mdbreact";
 
 class ShotListing extends Component {
-    state = {}
 
+    /*
+    Change text color depending on percentage of makes.
+    */
     getShotPercentClass = (percentage) => {
-
         if (percentage >= 100) {
             return 'royalblue';
         }

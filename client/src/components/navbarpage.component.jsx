@@ -1,3 +1,7 @@
+/*
+Navigation bar component.
+*/
+
 import React from "react";
 import {
     MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
@@ -14,10 +18,18 @@ const NavbarPage = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { isAuthenticated, isLoading } = useAuth0();
 
+    /*
+    Toggle the collapsing/dropdown when the nav bar resizes for smaller screens.
+    */
     const toggleCollapse = () => {
         setIsOpen(!isOpen);
     }
 
+    /*
+    Render different buttons depending on whether a user is logged in or not.
+    If there is no user, render login and register buttons.
+    If a user is logged in, render profile and logout buttons.
+    */
     const getNavButtons = () => {
         return isLoading ? <></> : isAuthenticated ? <div><ProfileButton /><LogoutButton /></div> : <div><LoginButton /><RegisterButton /></div>
     }
