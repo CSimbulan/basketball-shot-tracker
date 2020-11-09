@@ -11,7 +11,7 @@ Workout schema.
 const workoutSchema = new Schema(
     {
         shotList: { type: Array, required: true },
-        description: { type: String, required: false },
+        userEmail: { type: String, required: false },
         startdate: { type: Date, required: false },
         enddate: { type: Date, required: false },
     },
