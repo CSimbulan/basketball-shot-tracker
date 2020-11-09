@@ -38,6 +38,7 @@ exports.createWorkout = (req, res) => {
 
     workoutFields = {};
     workoutFields.shotList = req.body.shotList;
+    workoutFields.userEmail = req.body.email;
     workoutFields.startdate = Date.parse(req.body.startdate);
     if (req.body.description) { workoutFields.description = req.body.description; }
     if (req.body.enddate) { workoutFields.enddate = Date.parse(req.body.enddate); }
