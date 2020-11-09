@@ -46,8 +46,9 @@ class Main extends Component {
     clickCell = (x, y) => {
         if (this.state.addingShot && !this.state.shotList.some(e => (e.x === x && e.y === y))) {
             let sL = [...this.state.shotList];
-            const [marker, markercolor] = this.generateRandomMarker()
-            sL.push({ x: x, y: y, makes: 0, attemps: 0, marker: marker, markercolor: markercolor });
+            const [marker, markercolor] = this.generateRandomMarker();
+            const [distance, location, points] = this.getShotClassifications(x, y);
+            sL.push({ x, y, makes: 0, attemps: 0, marker, markercolor, distance, location, points });
             this.setState({ shotList: sL });
             this.toggleAddingShot()
         }
@@ -121,7 +122,7 @@ class Main extends Component {
     deleteShot = (shot) => {
         const newSL = this.state.shotList.filter(function (el) {
             if (el.x === shot.x && el.y === shot.y) {
-                return;
+                return void (0);
             }
             else {
                 return el;
@@ -143,6 +144,48 @@ class Main extends Component {
                 />
             )
         })
+    }
+
+    getShotClassifications = (x, y) => {
+        // Bounds for shots in the paint.
+        if (x >= 7 && x <= 11) {
+            if (y >= 0 && y <= 7) {
+                return ["Close Range", "Paint", "2PT"];
+            }
+            else if (y >= 8 && y <= 10) {
+                return ["Mid Range", "Top of the Key", "2PT"]
+            }
+            else if (y >= 11 && y <= 13) {
+                return ["Long Range", "Top of the Key", "3PT"]
+            }
+        }
+        if ((x >= 2 && x <= 6) || (x >= 12 && x <= 16)) {
+            // Bounds for short corner jumper.
+            if (y >= 0 && y <= 3) {
+                return ["Mid Range", "Short Corner", "2PT"];
+            }
+            // Bounds for mid range elbow.
+            else if (((y === 4 || y === 5) && ((x >= 2 & x <= 6) || (x >= 12 && x <= 16))) || ((y === 6 || y === 7) && ((x >= 3 & x <= 6) || (x >= 12 && x <= 15))) ||
+                (y === 8 && ((x >= 4 & x <= 6) || (x >= 12 && x <= 14))) || (y === 9 && ((x >= 5 & x <= 6) || (x >= 12 && x <= 13)))) {
+                return ["Mid Range", "Elbow", "2PT"];
+            }
+        }
+        if ((x >= 0 && x <= 6) || (x >= 12 && x <= 18)) {
+            //Bounds for corner three pointers.
+            if ((y >= 0 && y <= 3) && (x === 0 || x === 1 || x === 17 || x === 18)) {
+                return ["Long Range", "Corner", "3PT"]
+            }
+            //Bounds for elbow three pointers.
+            if (((y === 4 || y === 5) && ((x >= 0 & x <= 1) || (x >= 17 && x <= 18))) || ((y === 6 || y === 7) && ((x >= 0 & x <= 2) || (x >= 16 && x <= 18))) ||
+                (y === 8 && ((x >= 0 & x <= 3) || (x >= 15 && x <= 18))) || (y === 9 && ((x >= 0 & x <= 4) || (x >= 14 && x <= 18))) ||
+                (y >= 10 && y <= 13)) {
+                return ["Long Range", "Elbow", "3PT"];
+            }
+        }
+        if (y >= 14) {
+            return ["Long Range", "Half Court", "3PT"];
+        }
+        return ["?", "?", "?"];
     }
 
 
