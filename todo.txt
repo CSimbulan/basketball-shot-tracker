@@ -1,2 +1,3 @@
--add manual input for fgm/fga shot list ui.
--add range classification for shots.
+-find somewhere to add the image credits
+-finish profile page
+-add analytics
