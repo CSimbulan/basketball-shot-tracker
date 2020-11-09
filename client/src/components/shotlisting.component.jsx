@@ -38,10 +38,13 @@ class ShotListing extends Component {
                         </MDBCol>
                         <MDBCol size="9" lg="9">
                             <MDBRow style={{ padding: "5px", alignItems: "center" }}>
-                                x: {shot.x}, y: {shot.y}
+                                <span className="shotlist-title">{shot.location} {shot.points}</span>
                                 <MDBBtnGroup size="sm" >
                                     <MDBBtn color="danger" onClick={() => this.props.deleteShot(shot)}><i className="fas fa-trash-alt"></i></MDBBtn>
                                 </MDBBtnGroup>
+                            </MDBRow>
+                            <MDBRow style={{ padding: "5px", alignItems: "center" }}>
+                                {shot.distance}
                             </MDBRow>
                             <MDBRow style={{ padding: "5px" }}>
                                 FGM: {shot.makes} FGA: {shot.attemps} FG%: <span style={{ fontWeight: 500, color: this.getShotPercentClass(shot.makes / shot.attemps * 100) }}> {shot.attemps > 0 ? (shot.makes / shot.attemps * 100).toFixed(1) + "%" : "0.0%"}</span>
