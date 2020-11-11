@@ -23,6 +23,15 @@ exports.getWorkoutById = (req, res) => {
 }
 
 /*
+Get request for a querying workouts tied to am email.
+*/
+exports.getWorkoutsByEmail = (req, res) => {
+    Workout.find({ userEmail: req.query.userEmail })
+        .then((workouts) => res.json(workouts))
+        .catch((err) => res.status(400).json("Error: " + err));
+}
+
+/*
 Delete a specific workout given an ID.
 */
 exports.deleteWorkoutById = (req, res) => {
