@@ -25,6 +25,7 @@ function App() {
           <Router>
             <NavbarPage />
             <Route exact path="/" component={Maindiv} />
+            <Route exact path="/view" component={Maindiv} />
             <Route path="/about" component={Maindiv} />
             <Route path="/profile" component={Profile} />
           </Router>

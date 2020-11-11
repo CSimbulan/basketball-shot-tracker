@@ -67,7 +67,7 @@ const WorkoutListing = (props) => {
 
     const viewWorkout = () => {
         props.viewWorkout(String(props.workout._id), props.workout);
-        props.history.push("/");
+        props.history.push("/view");
     }
 
     return (

@@ -34,6 +34,7 @@ class Main extends Component {
         this.props.workoutId ? this.setState({ shotList: this.props.workout.shotList }) : void (0);
         this.updateWindowDimensions();
         window.addEventListener('resize', this.updateWindowDimensions);
+        this.props.location.fromNav && this.props.workoutId ? window.location.reload() : void (0);
     }
 
     /*
