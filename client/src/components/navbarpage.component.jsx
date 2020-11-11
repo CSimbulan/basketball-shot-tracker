@@ -51,6 +51,12 @@ const NavbarPage = () => {
                     <MDBNavItem active>
                         <MDBNavLink to={{ pathname: "/", fromNav: true }}>Home</MDBNavLink>
                     </MDBNavItem>
+                    <MDBNavItem>
+                        <MDBNavLink to="/">About</MDBNavLink>
+                    </MDBNavItem>
+                    <MDBNavItem>
+                        <MDBNavLink to="/">Suggested Workouts</MDBNavLink>
+                    </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>
                     <MDBNavItem>
