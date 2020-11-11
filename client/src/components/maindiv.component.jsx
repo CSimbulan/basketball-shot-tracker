@@ -76,7 +76,7 @@ class Main extends Component {
             let sL = [...this.state.shotList];
             const [marker, markercolor] = this.generateRandomMarker();
             const [distance, location, points] = this.getShotClassifications(x, y);
-            sL.push({ x, y, makes: 0, attemps: 0, marker, markercolor, distance, location, points });
+            sL.push({ x, y, makes: 0, attempts: 0, marker, markercolor, distance, location, points });
             this.setState({ shotList: sL });
             this.toggleAddingShot()
         }
@@ -86,10 +86,10 @@ class Main extends Component {
     Create a random pairing a marker and color.
     */
     generateRandomMarker = () => {
-        let symbols = [<i class="fab fa-canadian-maple-leaf"></i>,
-        <i class="fas fa-apple-alt"></i>, <i class="fas fa-star"></i>, <i class="far fa-star"></i>, <i class="fas fa-circle"></i>,
-        <i class="fas fa-square"></i>, <i class="fas fa-moon"></i>, <i class="fas fa-basketball-ball"></i>, <i class="fas fa-crown"></i>,
-        <i class="fas fa-times"></i>, <i class="far fa-gem"></i>];
+        let symbols = ["fab fa-canadian-maple-leaf",
+            "fas fa-apple-alt", "fas fa-star", "far fa-star", "fas fa-circle",
+            "fas fa-square", "fas fa-moon", "fas fa-basketball-ball", "fas fa-crown",
+            "fas fa-times", "far fa-gem"];
         let colors = ["red", "royalblue", "gold", "black", "#22ff00", "#32a852", "#f27500", "#640af5", "#0ad2f5", "white", "#f78cff"];
         let randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -113,12 +113,12 @@ class Main extends Component {
 
     /*
     Increment amount of makes and for a given shot.
-    Number of attemps is also incremented.
+    Number of attempts is also incremented.
     */
     incrementMakes = (shot) => {
         const newSL = this.state.shotList.map(s =>
             (s.x === shot.x && s.y === shot.y)
-                ? { ...s, attemps: shot.attemps + 1, makes: shot.makes + 1 }
+                ? { ...s, attempts: shot.attempts + 1, makes: shot.makes + 1 }
                 : s
         );
         this.setState({ shotList: newSL })
@@ -126,12 +126,12 @@ class Main extends Component {
 
 
     /*
-    Increment amount of attemps for a given shot.
+    Increment amount of attempts for a given shot.
     */
-    incrementAttemps = (shot) => {
+    incrementAttempts = (shot) => {
         const newSL = this.state.shotList.map(s =>
             (s.x === shot.x && s.y === shot.y)
-                ? { ...s, attemps: shot.attemps + 1 }
+                ? { ...s, attempts: shot.attempts + 1 }
                 : s
         );
         this.setState({ shotList: newSL })
@@ -139,36 +139,36 @@ class Main extends Component {
 
     /*
     Decrement amount of makes and for a given shot.
-    Number of attemps is also decremented.
+    Number of attempts is also decremented.
     */
     decrementMakes = (shot) => {
         const newSL = this.state.shotList.map(s =>
             (s.x === shot.x && s.y === shot.y)
-                ? { ...s, attemps: shot.attemps > 0 ? shot.attemps - 1 : 0, makes: shot.makes > 0 ? shot.makes - 1 : 0 }
+                ? { ...s, attempts: shot.attempts > 0 ? shot.attempts - 1 : 0, makes: shot.makes > 0 ? shot.makes - 1 : 0 }
                 : s
         );
         this.setState({ shotList: newSL })
     }
 
     /*
-    Decrement amount of attemps for a given shot.
+    Decrement amount of attempts for a given shot.
     */
-    decrementAttemps = (shot) => {
+    decrementAttempts = (shot) => {
         const newSL = this.state.shotList.map(s =>
             (s.x === shot.x && s.y === shot.y)
-                ? { ...s, attemps: shot.attemps > 0 ? shot.attemps > shot.makes ? shot.attemps - 1 : shot.attemps : 0 }
+                ? { ...s, attempts: shot.attempts > 0 ? shot.attempts > shot.makes ? shot.attempts - 1 : shot.attempts : 0 }
                 : s
         );
         this.setState({ shotList: newSL })
     }
 
     /*
-    Reset the number of makes and attemps for a given shot.
+    Reset the number of makes and attempts for a given shot.
     */
     resetShot = (shot) => {
         const newSL = this.state.shotList.map(s =>
             (s.x === shot.x && s.y === shot.y)
-                ? { ...s, attemps: 0, makes: 0 }
+                ? { ...s, attempts: 0, makes: 0 }
                 : s
         );
         this.setState({ shotList: newSL })
@@ -196,8 +196,8 @@ class Main extends Component {
         return this.state.shotList.map((shot) => {
             return (
                 <ShotListing shot={shot}
-                    incrementAttemps={this.incrementAttemps}
-                    decrementAttemps={this.decrementAttemps}
+                    incrementAttempts={this.incrementAttempts}
+                    decrementAttempts={this.decrementAttempts}
                     incrementMakes={this.incrementMakes}
                     decrementMakes={this.decrementMakes}
                     deleteShot={this.deleteShot}
@@ -267,15 +267,15 @@ class Main extends Component {
                             </div>
                         </MDBCol>
                         <MDBCol sm="12" md="12" lg="4" xl="4" style={{ padding: 10, alignItems: "center", margin: "auto" }}>
-                            <div className="test" style={{ height: this.state.height }}>
-                                <div className="test-header  d-flex">
+                            <div className="list-container" style={{ height: this.state.height }}>
+                                <div className="list-header  d-flex">
                                     <MDBRow style={{ padding: "1px", justifyContent: "center", alignItems: "center" }}>
                                         <MDBBtn color="primary" size="sm" onClick={this.toggleAddingShot}>{this.state.addingShot ? "Cancel" : "Add Shot"}</MDBBtn>
                                         <MDBBtn color="red" size="sm" onClick={this.clearGrid}>Clear</MDBBtn>
                                         <SaveWorkout shotList={this.state.shotList} clearGrid={this.clearGrid} />
                                     </MDBRow>
                                 </div>
-                                <div className="test-list">
+                                <div className="list-list">
                                     {this.getShots()}
                                 </div>
                             </div>

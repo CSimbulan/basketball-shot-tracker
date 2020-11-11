@@ -39,7 +39,7 @@ class ShotListing extends Component {
                 <MDBContainer>
                     <MDBRow size="12" style={{ width: "100%" }}>
                         <MDBCol style={{ justifyContent: "center", alignItems: "center", margin: "auto" }}>
-                            <span className="court-mark" style={{ color: shot.markercolor }}>{shot.marker}</span>
+                            <span className="court-mark" style={{ color: shot.markercolor }}><i className={shot.marker} /></span>
                         </MDBCol>
                         <MDBCol size="9" lg="9">
                             <MDBRow style={{ padding: "5px", alignItems: "center" }}>
@@ -52,20 +52,20 @@ class ShotListing extends Component {
                                 {shot.distance}
                             </MDBRow>
                             <MDBRow style={{ padding: "5px" }}>
-                                FGM: {shot.makes} FGA: {shot.attemps} FG%: <span style={{ fontWeight: 500, color: this.getShotPercentClass(shot.makes / shot.attemps * 100) }}> {shot.attemps > 0 ? (shot.makes / shot.attemps * 100).toFixed(1) + "%" : "0.0%"}</span>
+                                FGM: {shot.makes} FGA: {shot.attempts} FG%: <span style={{ fontWeight: 500, color: this.getShotPercentClass(shot.makes / shot.attempts * 100) }}> {shot.attempts > 0 ? (shot.makes / shot.attempts * 100).toFixed(1) + "%" : "0.0%"}</span>
                             </MDBRow>
                             <MDBRow>
                                 <MDBBtnGroup size="sm" >
                                     <MDBBtn color="success" onClick={() => this.props.incrementMakes(shot)}>+M</MDBBtn>
                                 </MDBBtnGroup>
                                 <MDBBtnGroup size="sm" >
-                                    <MDBBtn color="primary" onClick={() => this.props.incrementAttemps(shot)}>+A</MDBBtn>
+                                    <MDBBtn color="primary" onClick={() => this.props.incrementAttempts(shot)}>+A</MDBBtn>
                                 </MDBBtnGroup>
                                 <MDBBtnGroup size="sm" >
                                     <MDBBtn color="warning" onClick={() => this.props.decrementMakes(shot)}>-M</MDBBtn>
                                 </MDBBtnGroup>
                                 <MDBBtnGroup size="sm" >
-                                    <MDBBtn color="deep-orange" onClick={() => this.props.decrementAttemps(shot)}>-A</MDBBtn>
+                                    <MDBBtn color="deep-orange" onClick={() => this.props.decrementAttempts(shot)}>-A</MDBBtn>
                                 </MDBBtnGroup>
                                 <MDBBtnGroup size="sm" >
                                     <MDBBtn className="deep-purple accent-3" onClick={() => this.props.resetShot(shot)}><i class="fas fa-redo"></i></MDBBtn>

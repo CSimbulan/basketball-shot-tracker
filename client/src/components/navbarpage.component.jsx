@@ -37,7 +37,13 @@ const NavbarPage = () => {
     return (
         <MDBNavbar className="peach-gradient" light expand="md">
             <MDBNavbarBrand>
-                <strong className="black-text">Navbar</strong>
+                <img
+                    src={process.env.PUBLIC_URL + "favicon.ico"}
+                    alt="logo"
+                    height="45px"
+                    width="45px"
+                ></img>{" "}
+                <strong className="black-text">Basketball Shot Tracker</strong>
             </MDBNavbarBrand>
             <MDBNavbarToggler onClick={toggleCollapse} />
             <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>

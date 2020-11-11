@@ -39,7 +39,7 @@ class CourtCell extends Component {
                 style={{ width: this.props.size + "px", height: this.props.size + "px", border: "1px dotted black", display: "flex" }}>
                 {this.props.shotList.some(e => (e.x === this.props.x && e.y === this.props.y)) ? <MDBTooltip clickable domElement placement="top">
                     <span className="court-mark" style={{ color: thisShot.markercolor }}>
-                        {thisShot.marker}
+                        <i className={thisShot.marker} />
                     </span>
                     <div className="t2a">
                         {thisShot.makes} / {thisShot.attemps}<br></br>
