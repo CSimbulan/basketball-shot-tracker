@@ -3,11 +3,14 @@ This is the main component where users create a workout.
 */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import CourtCell from "./courtcell.component";
 import ShotListing from "./shotlisting.component"
 import SaveWorkout from "./saveworkout.component"
 import { generateRandomMarker, getShotClassifications } from "./Utils"
+import { connect } from 'react-redux';
+import { viewWorkout } from '../actions/workoutActions';
 
 class Main extends Component {
     constructor(props) {
@@ -28,9 +31,16 @@ class Main extends Component {
     The resizing is used to calculate the size of the court.
     */
     componentDidMount() {
+        this.props.workoutId ? this.setState({ shotList: this.props.workout.shotList }) : void (0);
         this.updateWindowDimensions();
         window.addEventListener('resize', this.updateWindowDimensions);
+    }
 
+    /*
+    Remove the event listener when component unmounts.
+    */
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWindowDimensions);
     }
 
     /*
@@ -184,6 +194,7 @@ class Main extends Component {
         return this.state.shotList.map((shot) => {
             return (
                 <ShotListing shot={shot}
+                    key={shot.x + "," + shot.y}
                     incrementAttempts={this.incrementAttempts}
                     decrementAttempts={this.decrementAttempts}
                     incrementMakes={this.incrementMakes}
@@ -229,5 +240,15 @@ class Main extends Component {
     }
 }
 
+Main.propTypes = {
+    viewWorkout: PropTypes.func.isRequired,
+    workoutId: PropTypes.string
+}
 
-export default Main;
+const mapStateToProps = state => ({
+    isNewWorkout: state.workout.isNewWorkout,
+    workoutId: state.workout.workoutId,
+    workout: state.workout.workout
+})
+
+export default connect(mapStateToProps, { viewWorkout })(Main);

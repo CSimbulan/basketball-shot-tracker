@@ -59,3 +59,90 @@ export const generateRandomMarker = () => {
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     return [randomSymbol, randomColor];
 }
+
+/*
+Change text color depending on percentage of makes.
+*/
+export const getShotPercentClass = (percentage, defaultColor = "black") => {
+    if (percentage >= 100) {
+        return 'royalblue';
+    }
+    else if (percentage >= 80) {
+        return '#4287f5';
+    }
+    else if (percentage >= 50) {
+        return 'green';
+    }
+    else if (percentage >= 33) {
+        return '#fc7b03';
+    }
+    else if (percentage < 80) {
+        return 'red';
+    }
+    else {
+        return defaultColor;
+    }
+}
+
+/*
+This function formats dates from a Date object to "Month Day, Year TT:TT".
+*/
+export const formatDate = (rawDate) => {
+    const months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ];
+
+    /*
+    Add a zero to the time if it's only a single digit.
+    Example: 9:10 becomes 09:10.
+    */
+    function appendLeadingZeroes(n) {
+        if (n <= 9) {
+            return "0" + n;
+        }
+        return n;
+    }
+
+    /*
+    Covert 24 hour time to 12 hour time and add AM or PM.
+    */
+    function formatHour(n) {
+        let c = n >= 12 ? "PM" : "AM";
+        let x = n % 12;
+        if (x === 0) {
+            x += 12;
+        }
+        return [x, c];
+    }
+
+    let d = new Date(rawDate);
+    let hour = formatHour(d.getHours());
+
+    /*
+    Create string for formatted date.
+    */
+    let formatted_date =
+        months[d.getMonth()] +
+        " " +
+        d.getDate() +
+        ", " +
+        d.getFullYear() +
+        " " +
+        appendLeadingZeroes(hour[0]) +
+        ":" +
+        appendLeadingZeroes(d.getMinutes()) +
+        " " +
+        hour[1];
+    return formatted_date;
+};

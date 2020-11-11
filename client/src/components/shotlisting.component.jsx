@@ -4,32 +4,9 @@ Component for shot listing in the shot list user interface.
 
 import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBBtnGroup } from "mdbreact";
+import { getShotPercentClass } from './Utils'
 
 class ShotListing extends Component {
-
-    /*
-    Change text color depending on percentage of makes.
-    */
-    getShotPercentClass = (percentage) => {
-        if (percentage >= 100) {
-            return 'royalblue';
-        }
-        else if (percentage >= 80) {
-            return '#4287f5';
-        }
-        else if (percentage >= 50) {
-            return 'green';
-        }
-        else if (percentage >= 33) {
-            return '#fc7b03';
-        }
-        else if (percentage < 80) {
-            return 'red';
-        }
-        else {
-            return 'black';
-        }
-    }
 
     render() {
         const shot = this.props.shot;
@@ -52,7 +29,7 @@ class ShotListing extends Component {
                                 {shot.distance}
                             </MDBRow>
                             <MDBRow style={{ padding: "5px" }}>
-                                FGM: {shot.makes} FGA: {shot.attempts} FG%: <span style={{ fontWeight: 500, color: this.getShotPercentClass(shot.makes / shot.attempts * 100) }}> {shot.attempts > 0 ? (shot.makes / shot.attempts * 100).toFixed(1) + "%" : "0.0%"}</span>
+                                FGM: {shot.makes} FGA: {shot.attempts} FG%: <span style={{ fontWeight: 500, color: getShotPercentClass(shot.makes / shot.attempts * 100) }}> {shot.attempts > 0 ? (shot.makes / shot.attempts * 100).toFixed(1) + "%" : "0.0%"}</span>
                             </MDBRow>
                             <MDBRow>
                                 <MDBBtnGroup size="sm" >
@@ -68,7 +45,7 @@ class ShotListing extends Component {
                                     <MDBBtn color="deep-orange" onClick={() => this.props.decrementAttempts(shot)}>-A</MDBBtn>
                                 </MDBBtnGroup>
                                 <MDBBtnGroup size="sm" >
-                                    <MDBBtn className="deep-purple accent-3" onClick={() => this.props.resetShot(shot)}><i class="fas fa-redo"></i></MDBBtn>
+                                    <MDBBtn className="deep-purple accent-3" onClick={() => this.props.resetShot(shot)}><i className="fas fa-redo"></i></MDBBtn>
                                 </MDBBtnGroup>
                             </MDBRow>
                         </MDBCol>

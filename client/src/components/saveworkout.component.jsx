@@ -3,6 +3,7 @@ Component for saving a workout to the dataebase.
 */
 
 import React from 'react';
+import PropTypes from 'prop-types'
 import { useAuth0 } from '@auth0/auth0-react';
 import { MDBBtn, MDBModal, MDBModalBody, MDBModalHeader } from 'mdbreact';
 import { useState } from 'react';
@@ -11,6 +12,9 @@ import RegisterButton from './registerbutton.component'
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { connect } from 'react-redux';
+import { newWorkout } from '../actions/workoutActions'
+import { useEffect } from 'react';
 
 const SaveWorkout = (props) => {
 
@@ -49,22 +53,43 @@ const SaveWorkout = (props) => {
     }
 
     /*
+    If the user is editing an existing workout, get the workout data from the redux state.
+    */
+    useEffect(() => {
+        if (!props.isNewWorkout) {
+            setDescription(props.workout.description);
+            setDate(new Date(props.workout.startdate));
+        }
+    }, [props.isNewWorkout, props.workout.description, props.workout.startdate])
+
+    /*
     When the form is submitted, check if the shot list is not empty.
     Send a post request to the api with a workout object attached.
     */
     const onSubmit = (e) => {
         e.preventDefault();
-
         const email = user.email;
         const shotList = props.shotList
 
         if (shotList.length > 0) {
-            axios
-                .post('http://localhost:5000/api/workouts/add', { email, shotList, startdate: date, description })
-                .then(res => { console.log(res.data) })
-                .catch((err) => { console.log(err); })
-            props.clearGrid();
-            toggleSave();
+
+            if (props.isNewWorkout) {
+                axios
+                    .post('http://localhost:5000/api/workouts/add', { email, shotList, startdate: date, description })
+                    .then(res => { console.log(res.data) })
+                    .catch((err) => { console.log(err); })
+                props.clearGrid();
+                toggleSave();
+            }
+            else {
+                axios
+                    .post('http://localhost:5000/api/workouts/update/' + props.workoutId, { email, shotList, startdate: date, description })
+                    .then(res => { console.log(res.data) })
+                    .catch((err) => { console.log(err); })
+                props.clearGrid();
+                toggleSave();
+                props.newWorkout();
+            }
         }
     }
 
@@ -111,7 +136,17 @@ const SaveWorkout = (props) => {
             </MDBModal>
         </div>
     )
-
 }
 
-export default SaveWorkout;
+SaveWorkout.propTypes = {
+    newWorkout: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({
+    isNewWorkout: state.workout.isNewWorkout,
+    workoutId: state.workout.workoutId,
+    workout: state.workout.workout
+})
+
+
+export default connect(mapStateToProps, { newWorkout })(SaveWorkout);

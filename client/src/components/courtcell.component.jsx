@@ -4,32 +4,9 @@ This is the component for an inidividual cell in the court grid.
 
 import React, { Component } from 'react';
 import { MDBTooltip } from 'mdbreact';
+import { getShotPercentClass } from './Utils'
 
 class CourtCell extends Component {
-
-    /*
-    Change the text color based on percentage of makes.
-    */
-    getShotPercentClass = (percentage) => {
-        if (percentage >= 100) {
-            return 'royalblue';
-        }
-        else if (percentage >= 80) {
-            return '#4287f5';
-        }
-        else if (percentage >= 50) {
-            return 'green';
-        }
-        else if (percentage >= 33) {
-            return '#fc7b03';
-        }
-        else if (percentage < 80) {
-            return 'red';
-        }
-        else {
-            return 'white';
-        }
-    }
 
     render() {
         const thisShot = this.props.shotList.find(e => (e.x === this.props.x && e.y === this.props.y))
@@ -42,9 +19,9 @@ class CourtCell extends Component {
                         <i className={thisShot.marker} />
                     </span>
                     <div className="t2a">
-                        {thisShot.makes} / {thisShot.attemps}<br></br>
-                        <span style={{ fontWeight: 500, color: this.getShotPercentClass(thisShot.makes / thisShot.attemps * 100) }}>
-                            {thisShot.attemps > 0 ? (thisShot.makes / thisShot.attemps * 100).toFixed(1) + "%" : "0.0%"}
+                        {thisShot.makes} / {thisShot.attempts}<br></br>
+                        <span style={{ fontWeight: 500, color: getShotPercentClass(thisShot.makes / thisShot.attempts * 100, "white") }}>
+                            {thisShot.attempts > 0 ? (thisShot.makes / thisShot.attempts * 100).toFixed(1) + "%" : "0.0%"}
                         </span>
                     </div>
                 </MDBTooltip> : ""}

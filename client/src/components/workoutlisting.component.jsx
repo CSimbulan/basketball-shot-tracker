@@ -3,9 +3,16 @@ Component for an individual workout listing in the profile page.
 */
 
 import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
 import { MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { connect } from 'react-redux';
+import { viewWorkout } from '../actions/workoutActions';
+import { deleteWorkout } from '../actions/deleteAction';
+import { formatDate } from './Utils';
+import { withRouter } from 'react-router-dom';
+
 
 const WorkoutListing = (props) => {
 
@@ -16,17 +23,17 @@ const WorkoutListing = (props) => {
     useEffect(() => {
         updateWindowDimensions();
         window.addEventListener('resize', updateWindowDimensions);
+
+        return () => {
+            window.removeEventListener('resize', updateWindowDimensions);
+        }
     }, [])
 
 
     const updateWindowDimensions = () => {
-        if (selectRef.current) {
-            let w = selectRef.current.clientWidth;
-            setWidth(w);
-            setHeight(w * (2550 / 2850));
-            console.log(w);
-        }
-
+        let w = selectRef.current.clientWidth;
+        setWidth(w);
+        setHeight(w * (2550 / 2850));
     }
 
 
@@ -48,77 +55,19 @@ const WorkoutListing = (props) => {
     }
 
     /*
-    This function formats dates from a Date object to "Month Day, Year TT:TT".
-    */
-    const formatDate = (rawDate) => {
-        const months = [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",
-        ];
-
-        /*
-        Add a zero to the time if it's only a single digit.
-        Example: 9:10 becomes 09:10.
-        */
-        function appendLeadingZeroes(n) {
-            if (n <= 9) {
-                return "0" + n;
-            }
-            return n;
-        }
-
-        /*
-        Covert 24 hour time to 12 hour time and add AM or PM.
-        */
-        function formatHour(n) {
-            let c = n >= 12 ? "PM" : "AM";
-            let x = n % 12;
-            if (x === 0) {
-                x += 12;
-            }
-            return [x, c];
-        }
-
-        let d = new Date(rawDate);
-        let hour = formatHour(d.getHours());
-
-        /*
-        Create string for formatted date.
-        */
-        let formatted_date =
-            months[d.getMonth()] +
-            " " +
-            d.getDate() +
-            ", " +
-            d.getFullYear() +
-            " " +
-            appendLeadingZeroes(hour[0]) +
-            ":" +
-            appendLeadingZeroes(d.getMinutes()) +
-            " " +
-            hour[1];
-        return formatted_date;
-    };
-
-    /*
     Map shots in the shot list to markers on the court image.
     */
     const mapShots = () => {
         return (
             props.workout.shotList.map((shot) => {
-                return (<span className="court-mark-profile" style={{ color: shot.markercolor, position: "absolute", left: shot.x * 97 / 19 + "%", top: shot.y * 97 / 17 + "%" }}><i className={shot.marker} /></span>)
+                return (<span key={shot._id} className="court-mark-profile" style={{ color: shot.markercolor, position: "absolute", left: shot.x * 97 / 19 + "%", top: shot.y * 97 / 17 + "%" }}><i className={shot.marker} /></span>)
             })
         )
+    }
+
+    const viewWorkout = () => {
+        props.viewWorkout(String(props.workout._id), props.workout);
+        props.history.push("/");
     }
 
     return (
@@ -130,7 +79,7 @@ const WorkoutListing = (props) => {
                         {mapShots()}
                     </div>
                 </MDBCol>
-                <MDBCol size="8" md="8" lg="8" lg="8" style={{ alignItems: "center", margin: "auto", padding: 0 }}>
+                <MDBCol size="8" md="8" style={{ alignItems: "center", margin: "auto", padding: 0 }}>
                     <div style={{ textAlign: "left", justifyContent: "left" }}>
                         <strong>Workout Date:</strong> {formatDate(props.workout.startdate)}<br />
                         <strong>Description:</strong> {props.workout.description}<br />
@@ -138,13 +87,17 @@ const WorkoutListing = (props) => {
                         <strong>Mid Range:</strong> {getRange(props.workout.shotList, "Mid Range")}<br />
                         <strong>Long Range:</strong> {getRange(props.workout.shotList, "Long Range")}<br />
                         <strong>Total:</strong> {getRange(props.workout.shotList, "all")}<br />
-                        <MDBBtn size="sm" color="success">View</MDBBtn>
-                        <MDBBtn size="sm" color="danger">Delete</MDBBtn>
+                        <MDBBtn size="sm" color="success" onClick={viewWorkout}>View</MDBBtn>
+                        <MDBBtn size="sm" color="danger" onClick={() => props.deleteWorkout(String(props.workout._id))}>Delete</MDBBtn>
                     </div>
                 </MDBCol>
             </MDBRow>
         </div >
     )
 }
+WorkoutListing.propTypes = {
+    viewWorkout: PropTypes.func.isRequired,
+    deleteWorkout: PropTypes.func.isRequired
+}
 
-export default WorkoutListing;
+export default withRouter(connect(null, { deleteWorkout, viewWorkout })(WorkoutListing));
