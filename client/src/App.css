@@ -27,11 +27,19 @@
   }
 }
 
-.court-mark {
-  font-size: xx-large;
+.court-mark,
+.court-mark-profile {
   font-weight: 500;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
+}
+
+.court-mark {
+  font-size: xx-large;
+}
+
+.court-mark-profile {
+  font-size: calc(8px + 1vw);
 }
 
 .court-row {
@@ -56,13 +64,13 @@
   font-weight: 500;
 }
 
-.test {
+.list-container {
   border-radius: 10px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px 1px rgba(0, 0, 0, 0.18);
   width: 100%;
 }
 
-.test-header {
+.list-header {
   height: 15%;
   display: flex;
   justify-content: center;
@@ -71,7 +79,7 @@
   border-bottom: 1px solid black;
 }
 
-.test-list {
+.list-list {
   height: 85%;
   overflow-y: scroll;
 }
