@@ -17,6 +17,6 @@ router.route("/query").get(getWorkoutsByEmail)
 router.route("/:id").get(getWorkoutById);
 router.route("/:id").delete(deleteWorkoutById);
 router.route("/add").post(createWorkout);
-router.route("/update").put(updateWorkoutById);
+router.route("/update/:id").post(updateWorkoutById);
 
 module.exports = router;

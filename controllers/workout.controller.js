@@ -64,10 +64,20 @@ exports.createWorkout = (req, res) => {
 Put request for updating a workouts's shot list given a workout ID.
 */
 exports.updateWorkoutById = (req, res) => {
-    const workoutId = req.body.workoutId;
-    const updatedList = req.body.updatedList;
-    var ObjectID = require('mongodb').ObjectID;
-    Workout.updateOne({ "_id": ObjectID(workoutId) }, { $set: { "shotList": updatedList } })
-        .then(() => res.json("Workout's shot list updated!"))
+
+    Workout.findById(req.params.id)
+        .then((workout) => {
+
+            workout.shotList = req.body.shotList;
+            workout.userEmail = req.body.email;
+            workout.startdate = Date.parse(req.body.startdate);
+            if (req.body.description) { workout.description = req.body.description; }
+            if (req.body.enddate) { workout.enddate = Date.parse(req.body.enddate); }
+
+            workout
+                .save()
+                .then(() => res.json("Workout updated!"))
+                .catch((err) => res.status(400).json("Error: " + err));
+        })
         .catch((err) => res.status(400).json("Error: " + err));
 }
