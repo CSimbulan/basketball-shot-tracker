@@ -65,6 +65,9 @@ const WorkoutListing = (props) => {
         )
     }
 
+    /*
+    If a workout is selected to be viewed, add it to the redux state and send the user to the view page.
+    */
     const viewWorkout = () => {
         props.viewWorkout(String(props.workout._id), props.workout);
         props.history.push("/view");
