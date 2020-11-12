@@ -1,3 +1,7 @@
+/*
+Component for the "About" page. Just a simple description of the app and some image credits.
+*/
+
 import React from 'react';
 import { MDBRow, MDBCol } from 'mdbreact'
 
