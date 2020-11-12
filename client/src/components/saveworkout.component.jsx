@@ -75,7 +75,7 @@ const SaveWorkout = (props) => {
 
             if (props.isNewWorkout) {
                 axios
-                    .post('http://localhost:5000/api/workouts/add', { email, shotList, startdate: date, description })
+                    .post(`${process.env.REACT_APP_API_URL}api/workouts/add`, { email, shotList, startdate: date, description })
                     .then(res => { console.log(res.data) })
                     .catch((err) => { console.log(err); })
                 props.clearGrid();
@@ -83,7 +83,7 @@ const SaveWorkout = (props) => {
             }
             else {
                 axios
-                    .post('http://localhost:5000/api/workouts/update/' + props.workoutId, { email, shotList, startdate: date, description })
+                    .post(`${process.env.REACT_APP_API_URL}workouts/update/` + props.workoutId, { email, shotList, startdate: date, description })
                     .then(res => { console.log(res.data) })
                     .catch((err) => { console.log(err); })
                 props.clearGrid();

@@ -4,8 +4,7 @@ Navigation bar component.
 
 import React from "react";
 import {
-    MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-    MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem
+    MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse
 } from 'mdbreact';
 import LoginButton from './loginbutton.component'
 import RegisterButton from './registerbutton.component'
@@ -52,10 +51,7 @@ const NavbarPage = () => {
                         <MDBNavLink to={{ pathname: "/", fromNav: true }}>Home</MDBNavLink>
                     </MDBNavItem>
                     <MDBNavItem>
-                        <MDBNavLink to="/">About</MDBNavLink>
-                    </MDBNavItem>
-                    <MDBNavItem>
-                        <MDBNavLink to="/">Suggested Workouts</MDBNavLink>
+                        <MDBNavLink to="/about">About</MDBNavLink>
                     </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>

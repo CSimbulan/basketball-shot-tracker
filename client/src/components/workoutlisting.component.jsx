@@ -60,7 +60,7 @@ const WorkoutListing = (props) => {
     const mapShots = () => {
         return (
             props.workout.shotList.map((shot) => {
-                return (<span key={shot._id} className="court-mark-profile" style={{ color: shot.markercolor, position: "absolute", left: shot.x * 97 / 19 + "%", top: shot.y * 97 / 17 + "%" }}><i className={shot.marker} /></span>)
+                return (<span key={shot.x + "+" + shot.y} className="court-mark-profile" style={{ color: shot.markercolor, position: "absolute", left: shot.x * 97 / 19 + "%", top: shot.y * 97 / 17 + "%" }}><i className={shot.marker} /></span>)
             })
         )
     }

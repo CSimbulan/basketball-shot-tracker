@@ -13,12 +13,13 @@ import { MDBRow, MDBCol, MDBModal, MDBModalBody, MDBModalHeader, MDBBtn } from '
 import WorkoutListing from './workoutlisting.component'
 import { connect } from 'react-redux';
 import { deleteWorkout, notDeleteWorkout } from '../actions/deleteAction';
-import { set } from 'mongoose';
+import ShotLineChart from './shotLineChart.component';
 
 const Profile = (props) => {
     const { user, isLoading, isAuthenticated } = useAuth0();
 
     const [workoutList, setWorkoutList] = useState([]);
+    const [renderingData, setRenderingData] = useState("list");
 
     /*
     Retrieve workouts that are tied to the logged in user's email.
@@ -27,7 +28,7 @@ const Profile = (props) => {
     useEffect(() => {
         if (!isLoading && user) {
             axios
-                .get(`http://localhost:5000/api/workouts/query`, {
+                .get(`${process.env.REACT_APP_API_URL}api/workouts/query`, {
                     params: {
                         userEmail: user.email,
                     },
@@ -54,7 +55,7 @@ const Profile = (props) => {
     */
     const mapWorkoutList = () => {
         return workoutList.map((w) => {
-            return (<WorkoutListing workout={w} />)
+            return (<WorkoutListing key={w._id} workout={w} />)
         })
     }
 
@@ -70,13 +71,20 @@ const Profile = (props) => {
     */
     const confirmDelete = () => {
         axios
-            .delete('http://localhost:5000/api/workouts/' + props.deleteId)
+            .delete(`${process.env.REACT_APP_API_URL}api/workouts/` + props.deleteId)
             .then((response) => {
                 console.log(response.data);
             });
 
         toggleDelete();
         setWorkoutList(workoutList.filter((el) => el._id !== props.deleteId));
+    }
+
+    /*
+    Toggle which component to render, either the workout list or line chart.
+    */
+    const toggleRender = (option) => {
+        setRenderingData(option);
     }
 
     return (
@@ -87,10 +95,11 @@ const Profile = (props) => {
                         <MDBCol sm="12" md="12" lg="6">
                             <div className="list-container" style={{ height: "80vh" }}>
                                 <div className="list-header  d-flex">
-                                    <h1>My Workouts</h1>
+                                    <MDBBtn color="primary" size="sm" onClick={() => toggleRender("list")} active={renderingData === "list"}>My Workouts</MDBBtn>
+                                    <MDBBtn size="sm" onClick={() => toggleRender("chart")} active={renderingData === "chart"}>Percentage Graphs</MDBBtn>
                                 </div>
                                 <div className="list-list">
-                                    {mapWorkoutList()}
+                                    {renderingData === "list" ? mapWorkoutList() : <ShotLineChart workoutList={workoutList} />}
                                 </div>
                             </div>
                         </MDBCol>

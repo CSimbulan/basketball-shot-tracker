@@ -3,9 +3,10 @@ import {
   BrowserRouter as Router,
   Route,
 } from "react-router-dom";
-import NavbarPage from "./components/navbarpage.component";
-import Maindiv from "./components/maindiv.component"
+import NavbarPage from './components/navbarpage.component';
+import Maind from "./components/main.component"
 import Profile from './components/profile.component'
+import About from './components/about.component';
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
@@ -24,9 +25,9 @@ function App() {
         <div className="App">
           <Router>
             <NavbarPage />
-            <Route exact path="/" component={Maindiv} />
-            <Route exact path="/view" component={Maindiv} />
-            <Route path="/about" component={Maindiv} />
+            <Route exact path="/" component={Maind} />
+            <Route exact path="/view" component={Maind} />
+            <Route path="/about" component={About} />
             <Route path="/profile" component={Profile} />
           </Router>
         </div>
