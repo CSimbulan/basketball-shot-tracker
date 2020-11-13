@@ -22,7 +22,7 @@ class ShotListing extends Component {
                             <MDBRow style={{ padding: "5px", alignItems: "center" }}>
                                 <span className="shotlist-title">{shot.location} {shot.points}</span>
                                 <MDBBtnGroup size="sm" >
-                                    <MDBBtn color="danger" onClick={() => this.props.deleteShot(shot)}><i className="fas fa-trash-alt"></i></MDBBtn>
+                                    <MDBBtn className="shotlist-button" color="danger" onClick={() => this.props.deleteShot(shot)}><i className="fas fa-trash-alt"></i></MDBBtn>
                                 </MDBBtnGroup>
                             </MDBRow>
                             <MDBRow style={{ padding: "5px", alignItems: "center" }}>
@@ -33,7 +33,7 @@ class ShotListing extends Component {
                             </MDBRow>
                             <MDBRow>
                                 <MDBBtnGroup size="sm" >
-                                    <MDBBtn color="success" onClick={() => this.props.incrementMakes(shot)}>+M</MDBBtn>
+                                    <MDBBtn className="shotlist-button" color="success" onClick={() => this.props.incrementMakes(shot)}>+M</MDBBtn>
                                 </MDBBtnGroup>
                                 <MDBBtnGroup size="sm" >
                                     <MDBBtn color="primary" onClick={() => this.props.incrementAttempts(shot)}>+A</MDBBtn>
