@@ -23,8 +23,8 @@ const About = () => {
                             <p>The profile page will also contain analytics, which will show trends in the user's shooting percentages over time.</p>
                             <p>Court image is from <a href="https://www.vecteezy.com/free-vector/basketball">Basketball Vectors by Vecteezy.</a></p>
                             <p>Basketball icon made by           <a
-                                href="https://www.flaticon.com/authors/dinosoftlabs"
-                                title="DinosoftLabs">DinosoftLabs</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>.</p>
+                                href="https://www.flaticon.com/authors/dinosoftlabs" target="_blank" rel="noopener noreferrer"
+                                title="DinosoftLabs">DinosoftLabs</a> from <a href="https://www.flaticon.com/" target="_blank" rel="noopener noreferrer" title="Flaticon">www.flaticon.com</a>.</p>
                         </div>
                     </div>
                 </MDBCol>
