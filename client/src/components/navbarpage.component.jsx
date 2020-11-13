@@ -15,7 +15,7 @@ import { useState } from 'react';
 
 const NavbarPage = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { isAuthenticated, isLoading } = useAuth0();
+    const { user, isAuthenticated, isLoading } = useAuth0();
 
     /*
     Toggle the collapsing/dropdown when the nav bar resizes for smaller screens.
@@ -30,7 +30,11 @@ const NavbarPage = () => {
     If a user is logged in, render profile and logout buttons.
     */
     const getNavButtons = () => {
-        return isLoading ? <></> : isAuthenticated ? <div><ProfileButton /><LogoutButton /></div> : <div><LoginButton /><RegisterButton /></div>
+        return isLoading ? <></> : isAuthenticated ? <MDBNavbarNav right>
+            <MDBNavItem style={{ margin: "auto" }}><strong>Welcome back {user.nickname}!{console.log(user)}</strong></MDBNavItem>
+            <MDBNavItem><ProfileButton /></MDBNavItem>
+            <MDBNavItem><LogoutButton /></MDBNavItem>
+        </MDBNavbarNav> : <MDBNavbarNav right><MDBNavItem><LoginButton /></MDBNavItem><MDBNavItem><RegisterButton /></MDBNavItem></MDBNavbarNav>
     }
 
     return (
@@ -47,20 +51,17 @@ const NavbarPage = () => {
             <MDBNavbarToggler onClick={toggleCollapse} />
             <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
                 <MDBNavbarNav left>
-                    <MDBNavItem active>
+                    <MDBNavItem>
                         <MDBNavLink to={{ pathname: "/", fromNav: true }}>Home</MDBNavLink>
                     </MDBNavItem>
                     <MDBNavItem>
                         <MDBNavLink to="/about">About</MDBNavLink>
                     </MDBNavItem>
                 </MDBNavbarNav>
-                <MDBNavbarNav right>
-                    <MDBNavItem>
-                        {getNavButtons()}
-                    </MDBNavItem>
-                </MDBNavbarNav>
+
+                {getNavButtons()}
             </MDBCollapse>
-        </MDBNavbar>
+        </MDBNavbar >
     );
 }
 
