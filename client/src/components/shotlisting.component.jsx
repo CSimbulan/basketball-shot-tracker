@@ -36,16 +36,16 @@ class ShotListing extends Component {
                                     <MDBBtn className="shotlist-button" color="success" onClick={() => this.props.incrementMakes(shot)}>+M</MDBBtn>
                                 </MDBBtnGroup>
                                 <MDBBtnGroup size="sm" >
-                                    <MDBBtn color="primary" onClick={() => this.props.incrementAttempts(shot)}>+A</MDBBtn>
+                                    <MDBBtn className="shotlist-button" color="primary" onClick={() => this.props.incrementAttempts(shot)}>+A</MDBBtn>
                                 </MDBBtnGroup>
                                 <MDBBtnGroup size="sm" >
-                                    <MDBBtn color="warning" onClick={() => this.props.decrementMakes(shot)}>-M</MDBBtn>
+                                    <MDBBtn className="shotlist-button" color="warning" onClick={() => this.props.decrementMakes(shot)}>-M</MDBBtn>
                                 </MDBBtnGroup>
                                 <MDBBtnGroup size="sm" >
-                                    <MDBBtn color="deep-orange" onClick={() => this.props.decrementAttempts(shot)}>-A</MDBBtn>
+                                    <MDBBtn className="shotlist-button" color="deep-orange" onClick={() => this.props.decrementAttempts(shot)}>-A</MDBBtn>
                                 </MDBBtnGroup>
                                 <MDBBtnGroup size="sm" >
-                                    <MDBBtn className="deep-purple accent-3" onClick={() => this.props.resetShot(shot)}><i className="fas fa-redo"></i></MDBBtn>
+                                    <MDBBtn className="shotlist-button deep-purple accent-3" onClick={() => this.props.resetShot(shot)}><i className="fas fa-redo"></i></MDBBtn>
                                 </MDBBtnGroup>
                             </MDBRow>
                         </MDBCol>
