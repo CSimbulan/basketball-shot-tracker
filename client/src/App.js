@@ -22,7 +22,7 @@ const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 function App() {
   return (
     <Provider store={store}>
-      <Auth0Provider domain={domain} clientId={clientId} useRefreshTokens redirectUri={window.location.origin}>
+      <Auth0Provider domain={domain} clientId={clientId} useRefreshTokens={true} redirectUri={window.location.origin}>
         <div className="App">
           <Router>
             <NavbarPage />
