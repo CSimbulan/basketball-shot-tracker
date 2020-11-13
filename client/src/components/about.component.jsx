@@ -21,7 +21,7 @@ const About = () => {
                             <p>Through the UI the user can add how many makes and attemps they took from a marked spot.</p>
                             <p>Once the user is finished with a workout they can save it to the database and view or edit it later in the profile page.</p>
                             <p>The profile page will also contain analytics, which will show trends in the user's shooting percentages over time.</p>
-                            <p>Court image is from <a href="https://www.vecteezy.com/free-vector/basketball">Basketball Vectors by Vecteezy.</a></p>
+                            <p>Court image is from <a href="https://www.vecteezy.com/free-vector/basketball" target="_blank" rel="noopener noreferrer">Basketball Vectors by Vecteezy.</a></p>
                             <p>Basketball icon made by           <a
                                 href="https://www.flaticon.com/authors/dinosoftlabs" target="_blank" rel="noopener noreferrer"
                                 title="DinosoftLabs">DinosoftLabs</a> from <a href="https://www.flaticon.com/" target="_blank" rel="noopener noreferrer" title="Flaticon">www.flaticon.com</a>.</p>
