@@ -1,3 +1,1 @@
--find somewhere to add the image credits
--finish profile page
--add analytics
+-fix buttons for shot listing in live version
