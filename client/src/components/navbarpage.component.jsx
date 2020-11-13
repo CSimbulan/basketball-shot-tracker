@@ -12,10 +12,12 @@ import LogoutButton from './logoutbutton.component';
 import ProfileButton from './profilebutton.component'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom'
 
 const NavbarPage = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { user, isAuthenticated, isLoading } = useAuth0();
+    const loc = useLocation();
 
     /*
     Toggle the collapsing/dropdown when the nav bar resizes for smaller screens.
@@ -31,7 +33,7 @@ const NavbarPage = () => {
     */
     const getNavButtons = () => {
         return isLoading ? <></> : isAuthenticated ? <MDBNavbarNav right>
-            <MDBNavItem style={{ margin: "auto" }}><strong>Welcome back {user.nickname}!{console.log(user)}</strong></MDBNavItem>
+            <MDBNavItem style={{ margin: "auto" }}><strong>Welcome back {user.nickname}!</strong></MDBNavItem>
             <MDBNavItem><ProfileButton /></MDBNavItem>
             <MDBNavItem><LogoutButton /></MDBNavItem>
         </MDBNavbarNav> : <MDBNavbarNav right><MDBNavItem><LoginButton /></MDBNavItem><MDBNavItem><RegisterButton /></MDBNavItem></MDBNavbarNav>
@@ -51,14 +53,13 @@ const NavbarPage = () => {
             <MDBNavbarToggler onClick={toggleCollapse} />
             <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
                 <MDBNavbarNav left>
-                    <MDBNavItem>
+                    <MDBNavItem active={loc.pathname === "/"}>
                         <MDBNavLink to={{ pathname: "/", fromNav: true }}>Home</MDBNavLink>
                     </MDBNavItem>
-                    <MDBNavItem>
+                    <MDBNavItem active={loc.pathname === "/about"}>
                         <MDBNavLink to="/about">About</MDBNavLink>
                     </MDBNavItem>
                 </MDBNavbarNav>
-
                 {getNavButtons()}
             </MDBCollapse>
         </MDBNavbar >
