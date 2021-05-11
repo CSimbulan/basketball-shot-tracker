@@ -1,4 +1,19 @@
-# Basketball Shot Tracker
+# Basketball Shot Tracker <!-- omit in toc -->
+
+**_Table of Contents:_**
+
+- [Preview](#preview)
+- [About](#about)
+- [Tech Stack](#tech-stack)
+
+# Preview
+
+This project is currently live at https://www.basketball-shot-tracker.fit or https://basketball-shot-tracker.herokuapp.com
+
+![Main](./screenshots/main.png)
+![Profile](./screenshots/profile.png)
+
+# About
 
 Basketball Shot Tracker is an app for athletes to track their shots for a shooting workout.
 
@@ -10,6 +25,12 @@ Once the user is finished with a workout they can save it to the database and vi
 
 The profile page will also contain analytics, which will show trends in the user's shooting percentages over time.
 
-## Live page:
+# Tech Stack
 
-Check it out at https://basketball-shot-tracker.fit or https://basketball-shot-tracker.herokuapp.com
+MERN (Mongo, Express, React, Node)
+
+| Other Highlights |
+| :--------------: |
+|      Redux       |
+|   MDBootstrap    |
+|      Auth0       |
